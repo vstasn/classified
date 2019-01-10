@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="device-width, initial-scale=1">
+        <title>Classified</title>
+        <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="/">Classified</a>
+                        {% if user.username %}
+                            <ul class="nav navbar-nav navbar-left"
+                                <li><a class="navbar-text" href="">My classified</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="navbar-text">Logged in as {{ user.username }}</li>
+                                <li><a href="{% url 'logout' %}">Log out</a></li>
+                            </ul>
+                        {% else %}
+                            <form class="navbar-form navbar-right" method="POST" action="{% url 'login' %}">
+                                <span>Enter username and password:</span>
+                                <input class="form-control" name="username" type="text" />
+                                <input class="form-control" name="password" type="password" />
+                                <input type="submit" value="login" />
+                                {% csrf_token %}
+                            </form>
+                            <a class="nav navbar-nav navbar-right" href="{% url "register" %}" name="signup">
+                                <span class="navbar-text">Don't have account? SignUp</span>
+                            </a>
+                        {% endif %}
+                    </div>
+                </nav>
+
+            {% if messages %}
+                <div class="row">
+                    <div class="col-md-8">
+                        {% for message in messages %}
+                        {% if message.level_tag == 'success' %}
+                            <div class="alert alert-success">{{ message }}</div>
+                        {% else %}
+                            <div class="alert alert-warning">{{ message }}</div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </body>
+</html>
