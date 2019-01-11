@@ -17,10 +17,12 @@ from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include, url
 from ads import views as ads_views
+from ads import urls as ads_urls
 from accounts import urls as account_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r"^$", ads_views.home_page, name="home"),
-    url(r'^accounts/', include(account_urls)),
+    url(r"^$", ads_views.AdsListView.as_view(), name="home"),
+    url(r"^accounts/", include(account_urls)),
+    url(r"^ads/", include(ads_urls))
 ]

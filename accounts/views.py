@@ -1,5 +1,6 @@
 from django.views.generic.edit import CreateView
 from django.contrib import messages, auth
+from django.contrib.auth import views as auth_views
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 
@@ -16,11 +17,16 @@ def login_view(request):
     return redirect("/")
 
 
+class LogoutView(auth_views.LogoutView):
+    pass
+
+
 class UserCreate(CreateView):
     """user register"""
+
     form_class = auth.forms.UserCreationForm
-    template_name = 'signup.html'
-    success_url = reverse_lazy('home')
+    template_name = "signup.html"
+    success_url = reverse_lazy("home")
 
     def form_valid(self, form):
         messages.success(self.request, "User created, sign in, please")

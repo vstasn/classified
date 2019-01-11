@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block table %}
+    <h1>Ads {{ ads.title }}</h1>
+    <table class="table">
+        <tr><td>Description: {{ ads.description }}</td></tr>
+        <tr><td>Owner: {{ ads.owner }}</td></tr>
+        <tr><td>City: {{ ads.city }}</td></tr>
+        <tr><td>View count: {{ view_count }}</td></tr>
+    </table>
+{% endblock %}

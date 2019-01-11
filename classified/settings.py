@@ -49,7 +49,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'classified.middleware.CounterMiddleware',
 ]
+
+SESSION_ENGINE = 'accounts.session_backend'
 
 ROOT_URLCONF = 'classified.urls'
 
@@ -124,3 +127,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.abspath(os.path.join(BASE_DIR, '../static'))
+
+# Counter settings
+COUNTER_ADS_VIEW = 'AdsDetailView'
+
+# Redis config
+REDIS_URL = os.environ.get('REDIS_URL', 'redis://redis:6379/0')

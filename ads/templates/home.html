@@ -1,1 +1,19 @@
 {% extends 'base.html' %}
+
+{% block table %}
+    <h1>Ads List</h1>
+
+    {% if ads_list %}
+    <ul>
+
+      {% for ads in ads_list %}
+      <li>
+        <a href="{{ ads.get_absolute_url }}">{{ ads.title }}</a> ({{ads.owner}}) ({{ads.city}})
+      </li>
+      {% endfor %}
+
+    </ul>
+    {% else %}
+      <p>There are no ads in the classified.</p>
+    {% endif %}
+{% endblock %}
