@@ -1,1 +1,1 @@
-
+# Django classified app
