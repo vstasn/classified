@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ads',
     'accounts',
+    'functional_tests',
 ]
 
 MIDDLEWARE = [
