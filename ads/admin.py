@@ -4,6 +4,11 @@ from .models import Ads, AdsCity
 
 
 class AdsAdminSite(AdminSite):
+    """
+    Admin management for Ads
+    Without updating Cities, because just user that is_staff can add new city
+    """
+
     site_header = "Ads administration"
 
     def has_permission(self, request):

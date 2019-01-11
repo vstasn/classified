@@ -4,6 +4,9 @@ from django.urls import reverse
 
 
 class AdsCity(models.Model):
+    """
+    Store cities
+    """
     city = models.TextField(blank=False, null=False)
 
     def __str__(self):
@@ -11,7 +14,9 @@ class AdsCity(models.Model):
 
 
 class Ads(models.Model):
-
+    """
+    Classified ads
+    """
     title = models.TextField()
     description = models.TextField()
     city = models.ForeignKey(AdsCity, blank=False, null=False, on_delete=models.CASCADE)

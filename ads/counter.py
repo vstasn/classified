@@ -3,6 +3,10 @@ import redis
 
 
 class Counter:
+    """
+    Counter can count any view, using prefix redis_key
+    """
+
     def __init__(self, prefix, hitkey):
         self.connect = redis.Redis.from_url(settings.REDIS_URL)
         self.counter_key = f"{prefix}:{hitkey}"
