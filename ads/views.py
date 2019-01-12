@@ -1,11 +1,6 @@
-from django.shortcuts import render
 from django.views import generic
 from .models import Ads
 from .counter import Counter
-
-
-def home_page(request):
-    return render(request, "home.html")
 
 
 class AdsListView(generic.ListView):

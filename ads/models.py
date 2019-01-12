@@ -7,6 +7,7 @@ class AdsCity(models.Model):
     """
     Store cities
     """
+
     city = models.TextField(blank=False, null=False)
 
     def __str__(self):
@@ -17,6 +18,7 @@ class Ads(models.Model):
     """
     Classified ads
     """
+
     title = models.TextField()
     description = models.TextField()
     city = models.ForeignKey(AdsCity, blank=False, null=False, on_delete=models.CASCADE)
@@ -26,3 +28,6 @@ class Ads(models.Model):
 
     def get_absolute_url(self):
         return reverse("ads-detail", args=[self.id])
+
+    def __str__(self):
+        return self.title

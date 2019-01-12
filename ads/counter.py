@@ -1,5 +1,7 @@
 from django.conf import settings
-import redis
+from redis import Redis
+
+connect = Redis.from_url(settings.REDIS_URL)
 
 
 class Counter:
@@ -8,7 +10,7 @@ class Counter:
     """
 
     def __init__(self, prefix, hitkey):
-        self.connect = redis.Redis.from_url(settings.REDIS_URL)
+        self.connect = connect
         self.counter_key = f"{prefix}:{hitkey}"
 
     def hit(self, request):
