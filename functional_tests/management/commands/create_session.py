@@ -19,9 +19,9 @@ class Command(BaseCommand):
         self.stdout.write(session_key)
 
 
-def create_pre_authenticated_session(username, passw):
+def create_pre_authenticated_session(username):
     '''create pre authenticated session'''
-    user = User.objects.create(username=username, password=passw)
+    user = User.objects.create(username=username)
     session = SessionStore()
     session[SESSION_KEY] = user.pk
     session[BACKEND_SESSION_KEY] = settings.AUTHENTICATION_BACKENDS[0]

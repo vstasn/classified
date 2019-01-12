@@ -9,7 +9,9 @@ class UserModelTest(TestCase):
 
     def test_user_is_valid_with_username_and_password_only(self):
         """test: user is valid with username and password only"""
-        user = User(username="user1", password="testffd")
+        test_user = "user1"
+        test_pass = "testffd"
+        user = User(username=test_user, password=test_pass)
         user.full_clean()
 
     def test_no_problem_with_auth_login(self):

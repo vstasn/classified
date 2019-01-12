@@ -56,18 +56,22 @@ class FunctionalTest(StaticLiveServerTestCase):
         navbar = self.browser.find_element_by_css_selector(".navbar")
         self.assertNotIn(username, navbar.text)
 
-    def create_pre_authenticated_session(self, username, passw):
-        '''create pre authenticated session'''
-        session_key = create_pre_authenticated_session(username, passw)
+    def create_pre_authenticated_session(self, username):
+        """create pre authenticated session"""
+        session_key = create_pre_authenticated_session(username)
 
         self.browser.get(self.live_server_url + "/404_no_such_url/")
-        self.browser.add_cookie(dict(
-            name=settings.SESSION_COOKIE_NAME,
-            value=session_key,
-            path='/',
-            secure=False,
-        ))
+        self.browser.add_cookie(
+            dict(
+                name=settings.SESSION_COOKIE_NAME,
+                value=session_key,
+                path="/",
+                secure=False,
+            )
+        )
 
     def create_catalog_cities(self):
-        AdsCity.objects.create(city="Moscow")
-        AdsCity.objects.create(city="Perm")
+        """create catalog cities"""
+        city1 = AdsCity.objects.create(city="Moscow")
+        city2 = AdsCity.objects.create(city="Perm")
+        self.cities = [city1, city2]

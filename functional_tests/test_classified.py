@@ -6,7 +6,8 @@ class ClassifiedTest(FunctionalTest):
     """test classified ads"""
 
     def test_create_new_classified_ads(self):
-        self.create_pre_authenticated_session("user31", "test1234#")
+        """test: create new classified ads"""
+        self.create_pre_authenticated_session("user31")
 
         self.browser.refresh()
         self.browser.get(self.live_server_url)
